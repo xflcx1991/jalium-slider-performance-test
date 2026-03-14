@@ -1,0 +1,48 @@
+﻿<Window xmlns="http://schemas.jalium.ui/2024"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="Jalium.UI.Gallery.MainWindow"
+        Title="Slider Performance Test - 100 Sliders (10x10 Grid)"
+        Width="1400"
+        Height="1000">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title -->
+        <TextBlock Grid.Row="0"
+                   Text="Slider Performance Test (100 Sliders - 10x10 Grid)"
+                   FontSize="28"
+                   Foreground="#FFFFFF"
+                   Margin="0,0,0,8"/>
+
+        <!-- Description -->
+        <TextBlock Grid.Row="1"
+                   Text="Drag any slider, all 100 sliders will sync to the same value (0-100)"
+                   FontSize="14"
+                   Foreground="#888888"
+                   Margin="0,0,0,16"/>
+
+        <!-- Current Value Display -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,0,0,16">
+            <TextBlock Text="Current Value: "
+                       Foreground="#888888"
+                       FontSize="16"/>
+            <TextBlock x:Name="CurrentValueText"
+                       Text="50"
+                       Foreground="#0078D4"
+                       FontSize="16"
+                       FontWeight="Bold"/>
+        </StackPanel>
+
+        <!-- Slider Grid Container -->
+        <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+            <Grid x:Name="SliderGrid" Margin="0,0,0,20">
+                <!-- Grid definitions will be set programmatically -->
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Window>
