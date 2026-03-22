@@ -1,0 +1,60 @@
+<Window x:Class="wpftest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:wpftest"
+        mc:Ignorable="d"
+        Title="WPF ItemsControl + RelativeSource Test" Height="600" Width="800">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Title -->
+        <TextBlock Grid.Row="0" 
+                   Text="WPF 100 Sliders with Shared Value (ItemsControl + RelativeSource)" 
+                   FontSize="20" Margin="0,0,0,10"/>
+        
+        <!-- Current Value -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
+            <TextBlock Text="Shared Value: " FontSize="16"/>
+            <TextBlock Text="{Binding SharedValue, StringFormat='{}{0:F0}'}" 
+                       FontSize="16" FontWeight="Bold" Foreground="Blue"/>
+        </StackPanel>
+        
+        <!-- 100 Sliders -->
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding SliderItems}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="10"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Background="#2D2D2D" BorderBrush="#3D3D3D" BorderThickness="1" 
+                                CornerRadius="4" Padding="8" Margin="4" Width="100" Height="70">
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                                <TextBlock Text="{Binding Num, StringFormat='{}{0:D3}'}" 
+                                           Foreground="#888888" FontSize="10" 
+                                           HorizontalAlignment="Center" Margin="0,0,0,2"/>
+                                <Slider Value="{Binding DataContext.SharedValue, 
+                                            RelativeSource={RelativeSource AncestorType=ItemsControl}, 
+                                            Mode=TwoWay}" 
+                                        Minimum="0" Maximum="100" Width="80" Height="20"/>
+                                <TextBlock Text="{Binding DataContext.SharedValue, 
+                                            RelativeSource={RelativeSource AncestorType=ItemsControl}, 
+                                            StringFormat='{}{0:F0}'}" 
+                                           Foreground="#0078D4" FontSize="10" FontWeight="Bold"
+                                           HorizontalAlignment="Center" Margin="0,2,0,0"/>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+</Window>

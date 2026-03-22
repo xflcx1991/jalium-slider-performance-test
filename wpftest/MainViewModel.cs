@@ -1,35 +1,21 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 
-namespace Jalium.UI.Gallery;
+namespace wpftest;
 
-/// <summary>
-/// ViewModel for slider item in the grid.
-/// </summary>
-public class SliderItem
-{
-    public int Num { get; set; }
-}
-
-/// <summary>
-/// ViewModel for MainWindow with shared slider value.
-/// </summary>
 public class MainViewModel : INotifyPropertyChanged
 {
-    private double _sharedSliderValue = 50;
+    private double _sharedValue = 50;
 
-    /// <summary>
-    /// Shared slider value for all 100 sliders.
-    /// </summary>
-    public double SharedSliderValue
+    public double SharedValue
     {
-        get => _sharedSliderValue;
+        get => _sharedValue;
         set
         {
-            if (_sharedSliderValue != value)
+            if (_sharedValue != value)
             {
-                _sharedSliderValue = value;
-                OnPropertyChanged(nameof(SharedSliderValue));
+                _sharedValue = value;
+                OnPropertyChanged(nameof(SharedValue));
             }
         }
     }

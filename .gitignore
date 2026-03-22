@@ -54,3 +54,5 @@ publish/
 
 # Qoder IDE
 .qoder/
+
+/[Rr]azor/

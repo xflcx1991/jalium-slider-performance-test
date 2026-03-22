@@ -7,14 +7,10 @@ namespace Jalium.UI.Gallery;
 /// </summary>
 public partial class MainWindow : Window
 {
-    /// <summary>
-    /// ViewModel with shared slider value.
-    /// </summary>
-    public MainViewModel ViewModel { get; } = new MainViewModel();
 
     public MainWindow()
     {
         InitializeComponent();
-        DataContext = ViewModel;
+        DataContext = new MainViewModel();
     }
 }
