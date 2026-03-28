@@ -24,6 +24,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Jalium.UI" Version="26.9.2" />
+      <PackageReference Include="Jalium.UI" Version="26.9.6" />
     </ItemGroup>
 </Project>
