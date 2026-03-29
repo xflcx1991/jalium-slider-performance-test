@@ -1,4 +1,4 @@
-﻿<Window xmlns="http://schemas.jalium.ui/2024"
+<Window xmlns="http://schemas.jalium.ui/2024"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         x:Class="Jalium.UI.Gallery.MainWindow"
         Title="Slider Performance Test - 100 Sliders (10x10 Grid)"
@@ -37,26 +37,23 @@
                        FontWeight="Bold"/>
         </StackPanel>
 
-        <!-- Slider Grid Container - Using ItemsControl -->
+        <!-- Slider Grid Container - Using Razor Loop -->
         <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-            <ItemsControl x:Name="SliderList" ItemsSource="{Binding SliderItems}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <UniformGrid Columns="10"/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Border Background="#2D2D2D" BorderBrush="#3D3D3D" BorderThickness="1" CornerRadius="4" Padding="12" Margin="6" Width="120" Height="80">
-                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
-                                <TextBlock Text="{Binding Num, StringFormat='{}{0:D3}'}" Foreground="#888888" FontSize="11" HorizontalAlignment="Center" Margin="0,0,0,4"/>
-                                <Slider Value="{Binding DataContext.SharedSliderValue, RelativeSource={RelativeSource AncestorType=ItemsControl}, Mode=TwoWay}" Minimum="0" Maximum="100" Width="100" Height="20" VerticalAlignment="Center" IsSnapToTickEnabled="True" TickFrequency="1"/>
-                                <TextBlock Text="{Binding DataContext.SharedSliderValue, RelativeSource={RelativeSource AncestorType=ItemsControl}, StringFormat='{}{0:F0}'}" Foreground="#0078D4" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,4,0,0"/>
-                            </StackPanel>
-                        </Border>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+            <UniformGrid Columns="10" x:Name="SliderGrid">
+                @{
+                for (int i = 1; i <= 100; i++)
+                {
+                
+                    <Border Background="#2D2D2D" BorderBrush="#3D3D3D" BorderThickness="1" CornerRadius="4" Padding="12" Margin="6" Width="120" Height="80">
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                            <TextBlock Text="@(i.ToString("D3"))" Foreground="#888888" FontSize="11" HorizontalAlignment="Center" Margin="0,0,0,4"/>
+                            <Slider Value="{Binding DataContext.SharedSliderValue, RelativeSource={RelativeSource AncestorType=UniformGrid}, Mode=TwoWay, FallbackValue=0, TargetNullValue=0}" Minimum="0" Maximum="100" Width="100" Height="20" VerticalAlignment="Center" IsSnapToTickEnabled="True" TickFrequency="1"/>
+                            <TextBlock Text="{Binding DataContext.SharedSliderValue, RelativeSource={RelativeSource AncestorType=UniformGrid}, StringFormat='{}{0:F0}'}" Foreground="#0078D4" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,4,0,0"/>
+                        </StackPanel>
+                    </Border>
+                 }
+                }
+            </UniformGrid>
         </ScrollViewer>
     </Grid>
 </Window>
