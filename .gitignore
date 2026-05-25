@@ -56,3 +56,5 @@ publish/
 .qoder/
 
 /[Rr]azor/
+
+.dotnet-home/
